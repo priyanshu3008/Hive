@@ -27,7 +27,7 @@ export default function Chat() {
         <SpaceBackground />
         <div className="min-h-screen p-4 font-mono flex items-center justify-center">
           <Card className="w-full max-w-md p-6 space-y-4">
-            <h1 className="text-2xl font-bold text-primary text-center">PD&gt; Creation_ chAt</h1>
+            <h1 className="text-2xl font-bold text-primary text-center">PDHive – Community-oriented vibe</h1>
             <div className="space-y-2">
               <Input
                 placeholder="Enter your username"
@@ -53,9 +53,12 @@ export default function Chat() {
     <>
       <SpaceBackground />
       <div className="min-h-screen p-4 font-mono">
-        <header className="max-w-2xl mx-auto mb-8 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-primary">PD&gt; Creation_ chAt</h1>
-          <ThemeToggle />
+        <header className="max-w-2xl mx-auto mb-8">
+          <div className="flex justify-between items-center mb-2">
+            <h1 className="text-2xl font-bold text-primary">PDHive – Community-oriented vibe</h1>
+            <ThemeToggle />
+          </div>
+          <p className="text-sm text-muted-foreground text-right">Made with 💖 by PRIYANSHU DUMADIYA</p>
         </header>
         <ChatWindow username={username} />
       </div>
