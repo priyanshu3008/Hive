@@ -6,6 +6,8 @@ export const messages = pgTable("messages", {
   id: serial("id").primaryKey(),
   username: text("username").notNull(),
   content: text("content").notNull(),
+  mediaUrl: text("mediaUrl"),
+  mediaType: text("mediaType"),
   timestamp: timestamp("timestamp").defaultNow().notNull()
 });
 
