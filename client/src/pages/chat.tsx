@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import { SpaceBackground } from "@/components/space-background";
 import { ChatWindow } from "@/components/chat-window";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { generateSpaceUsername } from "@/lib/constants";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card } from "@/components/ui/card";
 
 export default function Chat() {
-  const [username] = useState(() => generateSpaceUsername());
+  const [username, setUsername] = useState("");
+  const [isUsernameSet, setIsUsernameSet] = useState(false);
 
   useEffect(() => {
     // Load Space Mono font
@@ -18,12 +21,40 @@ export default function Chat() {
     };
   }, []);
 
+  if (!isUsernameSet) {
+    return (
+      <>
+        <SpaceBackground />
+        <div className="min-h-screen p-4 font-mono flex items-center justify-center">
+          <Card className="w-full max-w-md p-6 space-y-4">
+            <h1 className="text-2xl font-bold text-primary text-center">PD&gt; Creation_ chAt</h1>
+            <div className="space-y-2">
+              <Input
+                placeholder="Enter your username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="text-center"
+              />
+              <Button 
+                className="w-full" 
+                onClick={() => username.trim() && setIsUsernameSet(true)}
+                disabled={!username.trim()}
+              >
+                Join Chat
+              </Button>
+            </div>
+          </Card>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       <SpaceBackground />
       <div className="min-h-screen p-4 font-mono">
         <header className="max-w-2xl mx-auto mb-8 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-primary">Cosmic Chat</h1>
+          <h1 className="text-2xl font-bold text-primary">PD&gt; Creation_ chAt</h1>
           <ThemeToggle />
         </header>
         <ChatWindow username={username} />

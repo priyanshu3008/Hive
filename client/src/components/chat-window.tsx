@@ -29,6 +29,13 @@ export function ChatWindow({ username }: ChatWindowProps) {
         setMessages(data.messages);
       } else if (data.type === 'message') {
         setMessages(prev => [...prev, data.message]);
+        if (data.message.username === username) {
+          toast({
+            title: "Message Delivered",
+            description: "Your message has been sent successfully!",
+            duration: 2000,
+          });
+        }
       } else if (data.type === 'error') {
         toast({
           variant: "destructive",
@@ -41,16 +48,16 @@ export function ChatWindow({ username }: ChatWindowProps) {
     return () => {
       ws.close();
     };
-  }, [toast]);
+  }, [toast, username]);
 
   const sendMessage = () => {
     if (!input.trim()) return;
-    
+
     wsRef.current?.send(JSON.stringify({
       username,
       content: input.trim()
     }));
-    
+
     setInput("");
   };
 
@@ -61,7 +68,7 @@ export function ChatWindow({ username }: ChatWindowProps) {
           <MessageItem key={msg.id} message={msg} />
         ))}
       </ScrollArea>
-      
+
       <div className="flex gap-2">
         <Input
           value={input}
